@@ -1,0 +1,84 @@
+name: Update Company News
+
+on:
+  schedule:
+    # 每天北京时间早上9点运行 (UTC 1:00)
+    - cron: '0 1 * * *'
+  workflow_dispatch: # 允许手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  update-company-news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Fetch and analyze company news
+        env:
+          COZE_WORKLOAD_IDENTITY_API_KEY: ${{ secrets.COZE_WORKLOAD_IDENTITY_API_KEY }}
+        run: |
+          echo "🚀 开始抓取公司新闻..."
+          
+          # 检查是否配置了API密钥
+          if [ -z "$COZE_WORKLOAD_IDENTITY_API_KEY" ]; then
+            echo "⚠️  COZE_WORKLOAD_IDENTITY_API_KEY not configured. Skipping news fetch."
+            echo "To enable automatic updates, add COZE_WORKLOAD_IDENTITY_API_KEY to GitHub repository secrets."
+            exit 0
+          fi
+
+          # 运行公司新闻抓取脚本
+          node scripts/fetch-company-news.js
+
+      - name: Generate HTML
+        run: |
+          echo "🔨 生成HTML页面..."
+          node generate-company-html.js
+
+      - name: Check for updates
+        id: check_updates
+        run: |
+          echo "🔍 检查更新..."
+          # 检查是否有新的HTML内容
+          if git diff --quiet index.html; then
+            echo "no_changes=true" >> $GITHUB_OUTPUT
+            echo "ℹ️  No new updates found"
+          else
+            echo "no_changes=false" >> $GITHUB_OUTPUT
+            echo "✅ New updates found"
+          fi
+
+      - name: Commit and push changes
+        if: steps.check_updates.outputs.no_changes != 'true'
+        run: |
+          echo "📤 提交并推送更改..."
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html scripts/data/
+          git commit -m "Update Company News - $(date +'%Y-%m-%d %H:%M:%S UTC')"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to GitHub Pages
+        if: steps.check_updates.outputs.no_changes != 'true'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: gh-pages
+          keep_files: false

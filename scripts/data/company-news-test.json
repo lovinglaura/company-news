@@ -1,0 +1,111 @@
+{
+  "date": "2026-02-24T00:00:00.000Z",
+  "totalSearched": 45,
+  "selected": 10,
+  "realTimeNews": 15,
+  "importantNews": 15,
+  "deepNews": 15,
+  "companies": ["google", "nvidia", "tesla", "tencent", "maotai"],
+  "news": [
+    {
+      "id": "GOOGL-1771892180371-5",
+      "title": "谷歌母公司Alphabet财报亮眼，2026资本支出翻倍",
+      "summary": "Alphabet发布最新财报，营收和利润均超预期，宣布2026年资本支出将翻倍，主要用于AI基础设施建设。",
+      "url": "https://finance.sina.com.cn/tech/2026-02-24/doc-xyz123456.shtml",
+      "source": "新浪财经",
+      "publishTime": "2026-02-24T00:16:20.371Z",
+      "company": "GOOGL",
+      "valueScore": 9.6,
+      "stockImpact": {
+        "score": 9.6,
+        "type": "短期",
+        "level": "高",
+        "description": "对GOOGL股价有显著短期影响（高级别），建议重点关注"
+      },
+      "logicChain": "财报发布→业绩分析→市场反应",
+      "keyData": ["营收增长15%", "云业务增长28%", "AI业务300亿美元"],
+      "importantInfo": ["财报", "AI业务", "云业务", "研发投入"],
+      "deepSummary": "Alphabet最新财报显示，公司第四季度营收达到历史新高，主要得益于云业务和AI业务的强劲增长。公司宣布2026年资本支出将翻倍，主要用于AI基础设施建设..."
+    },
+    {
+      "id": "NVDA-1771892180371-6",
+      "title": "英伟达年度成绩单出炉!Q3财报揭示科技巨头的秘密武器GPU大战",
+      "summary": "英伟达发布第三季度财报，数据中心业务增长强劲，AI芯片需求持续旺盛。",
+      "url": "https://example.com/nvidia-q3",
+      "source": "科技新闻",
+      "publishTime": "2026-02-24T00:16:20.371Z",
+      "company": "NVDA",
+      "valueScore": 9.6,
+      "stockImpact": {
+        "score": 9.6,
+        "type": "短期",
+        "level": "高",
+        "description": "对NVDA股价有显著短期影响（高级别），建议重点关注"
+      },
+      "logicChain": "财报发布→技术优势→市场地位",
+      "keyData": ["数据中心增长40%", "AI芯片营收翻倍", "毛利率提升"],
+      "importantInfo": ["财报", "AI芯片", "数据中心", "技术突破"],
+      "deepSummary": "英伟达第三季度财报显示，数据中心业务同比增长40%，AI芯片需求持续旺盛。公司在GPU市场的领先地位进一步巩固..."
+    },
+    {
+      "id": "TSLA-1771892180371-7",
+      "title": "特斯拉发布2025全年财报:营收首次下滑，四季度净利润暴跌61%",
+      "summary": "特斯拉发布2025年全年财报，营收首次出现下滑，第四季度净利润大幅下降。",
+      "url": "https://example.com/tesla-2025",
+      "source": "汽车新闻",
+      "publishTime": "2026-02-24T00:16:20.371Z",
+      "company": "TSLA",
+      "valueScore": 9.6,
+      "stockImpact": {
+        "score": 9.6,
+        "type": "短期",
+        "level": "高",
+        "description": "对TSLA股价有显著短期影响（高级别），建议重点关注"
+      },
+      "logicChain": "财报发布→业绩分析→市场反应",
+      "keyData": ["营收下滑5%", "净利润下降61%", "交付量增长3%"],
+      "importantInfo": ["财报", "业绩下滑", "成本控制", "新车型"],
+      "deepSummary": "特斯拉2025年全年财报显示，公司营收首次出现下滑，主要受到市场竞争加剧和成本上升的影响。第四季度净利润大幅下降61%..."
+    },
+    {
+      "id": "0700.HK-1771892180371-8",
+      "title": "腾讯2024年财报:海外游戏收入创历史新高",
+      "summary": "腾讯发布2024年财报，海外游戏业务表现强劲，收入创下历史新高。",
+      "url": "https://example.com/tencent-2024",
+      "source": "游戏新闻",
+      "publishTime": "2026-02-24T00:16:20.371Z",
+      "company": "0700.HK",
+      "valueScore": 9.6,
+      "stockImpact": {
+        "score": 9.6,
+        "type": "短期",
+        "level": "高",
+        "description": "对0700.HK股价有显著短期影响（高级别），建议重点关注"
+      },
+      "logicChain": "财报发布→业务分析→增长动力",
+      "keyData": ["海外游戏增长35%", "总收入增长12%", "利润率提升"],
+      "importantInfo": ["财报", "海外游戏", "社交业务", "投资布局"],
+      "deepSummary": "腾讯2024年财报显示，海外游戏业务同比增长35%，创下历史新高。公司整体收入增长12%，主要得益于游戏和社交业务的强劲表现..."
+    },
+    {
+      "id": "600519.SS-1771892180371-9",
+      "title": "贵州茅台发布2025年业绩快报:净利润同比增长18.2%",
+      "summary": "贵州茅台发布2025年业绩快报，净利润实现稳健增长，高端产品需求旺盛。",
+      "url": "https://example.com/maotai-2025",
+      "source": "消费新闻",
+      "publishTime": "2026-02-24T00:16:20.371Z",
+      "company": "600519.SS",
+      "valueScore": 9.6,
+      "stockImpact": {
+        "score": 9.6,
+        "type": "短期",
+        "level": "高",
+        "description": "对600519.SS股价有显著短期影响（高级别），建议重点关注"
+      },
+      "logicChain": "业绩发布→市场分析→投资价值",
+      "keyData": ["净利润增长18.2%", "营收增长15.5%", "毛利率提升"],
+      "importantInfo": ["业绩快报", "高端产品", "品牌价值", "渠道优化"],
+      "deepSummary": "贵州茅台2025年业绩快报显示，公司净利润同比增长18.2%，主要得益于高端产品需求旺盛和渠道优化。营收增长15.5%..."
+    }
+  ]
+}

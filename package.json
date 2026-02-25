@@ -1,0 +1,25 @@
+{
+  "name": "company-news",
+  "version": "1.0.0",
+  "description": "金珂重点关注公司新闻动态 - 每日自动更新",
+  "main": "index.js",
+  "scripts": {
+    "start": "node scripts/server.js",
+    "fetch": "node scripts/fetch-company-news.js",
+    "generate": "node generate-company-html.js",
+    "update": "npm run fetch && npm run generate",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "company-news",
+    "stock-analysis",
+    "financial-news",
+    "automation"
+  ],
+  "author": "金珂",
+  "license": "MIT",
+  "dependencies": {
+    "coze-coding-dev-sdk": "^1.0.0"
+  },
+  "devDependencies": {}
+}

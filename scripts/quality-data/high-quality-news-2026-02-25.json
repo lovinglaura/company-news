@@ -1,0 +1,61 @@
+{
+  "date": "2026-02-25T09:46:36.177Z",
+  "total": 4,
+  "companies": [
+    "google",
+    "nvidia",
+    "tesla",
+    "tencent",
+    "maotai"
+  ],
+  "news": [
+    {
+      "id": "nvidia-1772012777351-elqhqujba",
+      "title": "【环球财经】英伟达财报公布在即，美股科技股再迎“压力测试”",
+      "summary": "【环球财经】英伟达财报公布在即，美股科技股再迎“压力测试”\n2026年02月25日 17:25\n来源： 新华财经\n专业金融数据，下一代智能终端\n新华财经上海2月25日电 当地时间2月25日（周三）美股",
+      "url": "https://finance.eastmoney.com/a/202602253654134872.html",
+      "source": "东方财富网",
+      "publishTime": "2026-02-25T17:25:00+08:00",
+      "company": "英伟达",
+      "ticker": "NVDA",
+      "color": "bg-green-100 text-green-800",
+      "icon": "💻"
+    },
+    {
+      "id": "nvidia-1772012777351-lh9tipxna",
+      "title": "英伟达周三盘后公布财报:科技股低迷下的“孤勇者”能走多远?",
+      "summary": "英伟达周三盘后公布财报：科技股低迷下的“孤勇者”能走多远？\n2026年02月25日 14:30\n来源： 金十数据\n编辑：东方财富网\n对科技股投资者而言，今年开局颇为艰难。八家市值超过1万亿美元的美国科",
+      "url": "http://fund.eastmoney.com/a/202602253653965911.html",
+      "source": "天天基金",
+      "publishTime": "2026-02-25T14:30:00+08:00",
+      "company": "英伟达",
+      "ticker": "NVDA",
+      "color": "bg-green-100 text-green-800",
+      "icon": "💻"
+    },
+    {
+      "id": "tencent-1772012789242-dzfy0oanr",
+      "title": "恒生科技高开低走，腾讯、阿里小幅收涨!AI应用跳水，MINIMAX跌超14%，智谱跌超10% | 港股收盘",
+      "summary": "恒生科技高开低走，腾讯、阿里小幅收涨！AI应用跳水，MINIMAX跌超14%，智谱跌超10% | 港股收盘\n2026年02月25日 16:47\n来源： 每日经济新闻\n2月25日港股收盘，恒生指数涨0.",
+      "url": "https://finance.eastmoney.com/a/202602253654095022.html",
+      "source": "东方财富网",
+      "publishTime": "2026-02-25T16:47:00+08:00",
+      "company": "腾讯",
+      "ticker": "0700.HK",
+      "color": "bg-purple-100 text-purple-800",
+      "icon": "🎮"
+    },
+    {
+      "id": "maotai-1772012793630-nk8359dpi",
+      "title": "19只白酒股上涨 贵州茅台1491.66元/股收盘",
+      "summary": "19只白酒股上涨 贵州茅台1491.66元/股收盘\n2026年02月25日 16:30 滚动播报\n（来源：北京商报）\n北京商报讯（记者 刘一博 冯若男）2月25日尾盘，沪指4147.23点上涨0.72 \n本文作者：滚动播报",
+      "url": "https://finance.sina.com.cn/jjxw/2026-02-25/doc-inhnzmmq2273201.shtml",
+      "source": "新浪财经",
+      "publishTime": "2026-02-25T16:30:00+08:00",
+      "company": "茅台",
+      "ticker": "600519.SS",
+      "color": "bg-amber-100 text-amber-800",
+      "icon": "🍶"
+    }
+  ]
+}
