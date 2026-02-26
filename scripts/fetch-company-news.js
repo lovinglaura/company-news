@@ -20,7 +20,7 @@ const CONFIG = {
       queries: [
         { query: 'Google 谷歌 最新新闻 今天 实时', timeRange: '1d', priority: 1 },
         { query: 'Google Alphabet 财报 盈利 AI产品发布', timeRange: '3d', priority: 2 },
-        { query: 'Google GOOGL 股价 分析 投资', timeRange: '7d', priority: 3 }
+        { query: 'Google GOOGL 股价 分析 投资', timeRange: '3d', priority: 3 }
       ],
       ticker: 'GOOGL',
       color: 'bg-blue-100 text-blue-800',
@@ -30,7 +30,7 @@ const CONFIG = {
       queries: [
         { query: 'NVIDIA 英伟达 最新新闻 今天', timeRange: '1d', priority: 1 },
         { query: 'NVIDIA 财报 GPU AI芯片 产品发布', timeRange: '3d', priority: 2 },
-        { query: 'NVDA 股价 分析 投资', timeRange: '7d', priority: 3 }
+        { query: 'NVDA 股价 分析 投资', timeRange: '3d', priority: 3 }
       ],
       ticker: 'NVDA',
       color: 'bg-green-100 text-green-800',
@@ -40,7 +40,7 @@ const CONFIG = {
       queries: [
         { query: 'Tesla 特斯拉 最新新闻 今天', timeRange: '1d', priority: 1 },
         { query: 'Tesla 财报 电动车 自动驾驶 马斯克', timeRange: '3d', priority: 2 },
-        { query: 'TSLA 股价 分析 投资', timeRange: '7d',priority: 3 }
+        { query: 'TSLA 股价 分析 投资', timeRange: '3d',priority: 3 }
       ],
       ticker: 'TSLA',
       color: 'bg-red-100 text-red-800',
@@ -50,7 +50,7 @@ const CONFIG = {
       queries: [
         { query: '腾讯 最新新闻 今天', timeRange: '1d', priority: 1 },
         { query: '腾讯 财报 游戏 社交 投资', timeRange: '3d', priority: 2 },
-        { query: '0700.HK 股价 分析 投资', timeRange: '7d', priority: 3 }
+        { query: '0700.HK 股价 分析 投资', timeRange: '3d', priority: 3 }
       ],
       ticker: '0700.HK',
       color: 'bg-purple-100 text-purple-800',
@@ -60,7 +60,7 @@ const CONFIG = {
       queries: [
         { query: '茅台 最新新闻 今天', timeRange: '1d', priority: 1 },
         { query: '茅台 财报 白酒 消费', timeRange: '3d', priority: 2 },
-        { query: '600519.SS 股价 分析 投资', timeRange: '7d', priority: 3 }
+        { query: '600519.SS 股价 分析 投资', timeRange: '3d', priority: 3 }
       ],
       ticker: '600519.SS',
       color: 'bg-amber-100 text-amber-800',
@@ -272,7 +272,18 @@ async function main() {
   
   // 按价值评分全局排序
   allNews.sort((a, b) => b.valueScore - a.valueScore);
-  const finalNews = allNews.slice(0, CONFIG.finalNewsCount);
+  
+  // 只保留最近3天的新闻（动态计算，每天运行时自动调整）
+  const threeDaysAgo = new Date();
+  threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+  threeDaysAgo.setHours(0, 0, 0, 0);
+  const filteredNews = allNews.filter(news => {
+    if (!news.publishTime) return false;
+    const publishTime = new Date(news.publishTime).getTime();
+    return publishTime >= threeDaysAgo.getTime();
+  });
+  
+  const finalNews = filteredNews.slice(0, CONFIG.finalNewsCount);
   
   // 准备输出数据
   const outputData = {
