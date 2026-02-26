@@ -100,6 +100,12 @@ async function fetchArticleContent(url) {
  * 深度总结新闻内容，保留关键信息和数据，去除来源等非核心信息
  */
 async function summarizeArticle(title, content) {
+  // 过滤无效内容（302跳转、403、空内容等）
+  if (content.includes('302 Found') || content.includes('403 Forbidden') || content.includes('NotFound') || content.trim().length < 50) {
+    // 抓取失败直接用标题+搜索摘要
+    return title;
+  }
+  
   // 过滤掉来源、发布时间、作者等非关键信息
   let summary = content.replace(/<[^>]*>/g, '') // 去掉HTML标签
     .replace(/来源：.*?([\n。])/g, '$1')
@@ -109,6 +115,7 @@ async function summarizeArticle(title, content) {
     .replace(/编辑：.*?([\n。])/g, '$1')
     .replace(/本文来自.*?([\n。])/g, '$1')
     .replace(/【.*?】/g, '')
+    .replace(/stgw|nginx|cloudflare/gi, '')
     .trim();
   
   // 只保留前200字核心内容
@@ -314,17 +321,48 @@ async function main() {
   // 按价值评分全局排序
   allNews.sort((a, b) => b.valueScore - a.valueScore);
   
-  // 只保留最近3天的新闻（动态计算，每天运行时自动调整）
+  // 优先保留最近3天的新闻，如果某公司近3天没有新闻，保留近7天的，确保每家公司至少1条
   const threeDaysAgo = new Date();
   threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
   threeDaysAgo.setHours(0, 0, 0, 0);
-  const filteredNews = allNews.filter(news => {
-    if (!news.publishTime) return false;
-    const publishTime = new Date(news.publishTime).getTime();
-    return publishTime >= threeDaysAgo.getTime();
-  });
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  sevenDaysAgo.setHours(0, 0, 0, 0);
   
-  const finalNews = filteredNews.slice(0, CONFIG.finalNewsCount);
+  // 统计每家公司的新闻数量
+  const companyCount = {};
+  const filteredNews = [];
+  
+  // 先加3天内的
+  for (const news of allNews) {
+    if (!news.publishTime) continue;
+    const publishTime = new Date(news.publishTime).getTime();
+    if (publishTime >= threeDaysAgo.getTime()) {
+      filteredNews.push(news);
+      companyCount[news.company] = (companyCount[news.company] || 0) + 1;
+    }
+  }
+  
+  // 每家公司不足1条的，加7天内的
+  for (const [companyName, companyInfo] of Object.entries(CONFIG.companies)) {
+    const ticker = companyInfo.ticker;
+    if (!companyCount[ticker] || companyCount[ticker] < 1) {
+      for (const news of allNews) {
+        if (news.company === ticker && news.publishTime) {
+          const publishTime = new Date(news.publishTime).getTime();
+          if (publishTime >= sevenDaysAgo.getTime()) {
+            filteredNews.push(news);
+            companyCount[ticker] = (companyCount[ticker] || 0) + 1;
+            break;
+          }
+        }
+      }
+    }
+  }
+  
+  // 最终按评分排序，最多10条
+  filteredNews.sort((a, b) => b.valueScore - a.valueScore);
+  const finalNews = filteredNews.slice(0, 10);
   
   // 准备输出数据
   const outputData = {
