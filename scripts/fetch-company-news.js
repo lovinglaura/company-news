@@ -301,9 +301,11 @@ async function main() {
       await new Promise(resolve => setTimeout(resolve, 800));
     }
     
-    // 按价值评分排序，取前2条
+    // 按价值评分排序，每家公司至少保留1条，最多3条，确保覆盖所有公司
     companyNews.sort((a, b) => b.valueScore - a.valueScore);
-    const topNews = companyNews.slice(0, 2);
+    // 每家公司至少留1条，最多3条
+    const takeCount = Math.max(1, Math.min(3, companyNews.length));
+    const topNews = companyNews.slice(0, takeCount);
     
     allNews.push(...topNews);
     console.log(`   ✅ 精选 ${topNews.length} 条高价值新闻`);
