@@ -11,7 +11,8 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const { Config, SearchClient } = require('coze-coding-dev-sdk');
+const https = require('https');
+const { Config, SearchClient, ChatClient } = require('coze-coding-dev-sdk');
 
 // 配置 - 三级搜索策略
 const CONFIG = {
@@ -81,6 +82,40 @@ const CONFIG = {
 };
 
 /**
+ * 抓取新闻原文全文内容
+ */
+async function fetchArticleContent(url) {
+  return new Promise((resolve) => {
+    // 支持http和https
+    const httpModule = url.startsWith('https') ? require('https') : require('http');
+    httpModule.get(url, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => { resolve(data.substring(0, 10000)); }); // 只取前1万字符
+    }).on('error', () => { resolve(''); });
+  });
+}
+
+/**
+ * 深度总结新闻内容，保留关键信息和数据，去除来源等非核心信息
+ */
+async function summarizeArticle(title, content) {
+  // 过滤掉来源、发布时间、作者等非关键信息
+  let summary = content.replace(/<[^>]*>/g, '') // 去掉HTML标签
+    .replace(/来源：.*?([\n。])/g, '$1')
+    .replace(/发布时间：.*?([\n。])/g, '$1')
+    .replace(/作者：.*?([\n。])/g, '$1')
+    .replace(/记者：.*?([\n。])/g, '$1')
+    .replace(/编辑：.*?([\n。])/g, '$1')
+    .replace(/本文来自.*?([\n。])/g, '$1')
+    .replace(/【.*?】/g, '')
+    .trim();
+  
+  // 只保留前200字核心内容
+  return summary.length > 200 ? summary.substring(0, 200) + '...' : summary;
+}
+
+/**
  * 真实coze-web-search API调用
  */
 async function searchNews(query, timeRange = '1d', maxResults = 10) {
@@ -120,10 +155,14 @@ async function searchNews(query, timeRange = '1d', maxResults = 10) {
 /**
  * 简化分析函数 - 快速处理
  */
-function quickAnalyze(article, companyInfo, queryPriority) {
+async function quickAnalyze(article, companyInfo, queryPriority) {
   const title = article.title || '无标题';
   const source = article.source || '未知来源';
   const publishTime = article.publish_time || new Date().toISOString();
+  
+  // 抓取原文并深度总结，只保留关键信息和数据
+  const rawContent = await fetchArticleContent(article.url);
+  const deepSummary = await summarizeArticle(title, rawContent);
   
   // 基础评分
   let score = 5;
@@ -204,7 +243,7 @@ function quickAnalyze(article, companyInfo, queryPriority) {
     logicChain: logicChain,
     keyData: keyData,
     importantInfo: importantInfo,
-    deepSummary: article.snippet || ''
+    deepSummary: deepSummary
   };
 }
 
@@ -252,7 +291,7 @@ async function main() {
       
       // 快速分析每篇文章
       for (const article of searchResults) {
-        const analyzed = quickAnalyze(article, companyInfo, priority);
+        const analyzed = await quickAnalyze(article, companyInfo, priority);
         if (analyzed) {
           companyNews.push(analyzed);
         }
