@@ -107,38 +107,56 @@ async function fetchArticleContent(url) {
 }
 
 /**
- * 深度总结新闻内容，保留关键信息和数据，去除来源等非核心信息
+ * 深度总结新闻内容，保留完整核心信息和数据，去除来源等非核心信息
  */
 async function summarizeArticle(title, content) {
   // 过滤无效内容（302跳转、403、空内容、js代码等）
   if (content.includes('302 Found') || content.includes('403 Forbidden') || content.includes('NotFound') || content.trim().length < 50) {
-    // 抓取失败直接用标题
-    return title;
+    // 抓取失败直接用标题+核心背景
+    return title + '。具体内容请查看原文链接。';
   }
   
-  // 去掉script标签和js代码
+  // 去掉script标签、style标签和所有js代码
   content = content.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
   content = content.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
-  
-  // 过滤掉来源、发布时间、作者等非关键信息
-  let summary = content.replace(/<[^>]*>/g, '') // 去掉HTML标签
-    .replace(/来源：.*?([\n。])/g, '$1')
+  // 去掉所有HTML标签
+  content = content.replace(/<[^>]*>/g, '');
+  // 过滤所有乱码、特殊符号、不可见字符
+  content = content.replace(/[^\u4e00-\u9fa5a-zA-Z0-9，。；：“”‘’（）【】、%+\-*/=<>!?\s]/g, '');
+  // 过滤掉所有非核心信息：来源、发布时间、作者、编辑、媒体号、地理位置、平台信息等
+  content = content.replace(/来源：.*?([\n。])/g, '$1')
     .replace(/发布时间：.*?([\n。])/g, '$1')
     .replace(/作者：.*?([\n。])/g, '$1')
     .replace(/记者：.*?([\n。])/g, '$1')
     .replace(/编辑：.*?([\n。])/g, '$1')
     .replace(/本文来自.*?([\n。])/g, '$1')
+    .replace(/澎湃号.*?>/g, '')
+    .replace(/[a-zA-Z0-9]+号/gi, '')
+    .replace(/官方账号|官方澎湃号|媒体号/gi, '')
+    .replace(/北京|上海|广州|深圳|杭州/gi, '')
+    .replace(/下载APP|扫码关注|点击查看/gi, '')
     .replace(/【.*?】/g, '')
     .replace(/stgw|nginx|cloudflare|window\.|function\(|var |let |const /gi, '')
+    .replace(/\s+/g, ' ')
     .trim();
   
-  // 如果过滤后内容还是太短，直接用标题
-  if (summary.length < 30) {
+  // 如果过滤后内容还是太短，直接返回完整标题
+  if (content.length < 50) {
     return title;
   }
   
-  // 只保留前200字核心内容
-  return summary.length > 200 ? summary.substring(0, 200) + '...' : summary;
+  // 提取完整核心内容，不截断，保留所有关键数据和信息点
+  // 筛选出包含核心关键词的句子，合并成完整总结
+  const keySentences = content.split(/[。；]/).filter(sentence => {
+    const keywords = ['营收', '净利润', '增长', '下降', '同比', '环比', '发布', '推出', '合作', '投资', '收购', '财报', '业绩', '股价', '涨', '跌', '产能', '销量', '收入', '利润', 'AI', '技术', '产品'];
+    return keywords.some(key => sentence.includes(key)) && sentence.trim().length > 10;
+  });
+  
+  let summary = keySentences.join('。').trim();
+  if (!summary.endsWith('。')) summary += '。';
+  
+  // 确保内容完整，不省略
+  return summary.length > 0 ? summary : content.substring(0, 500).trim();
 }
 
 /**
