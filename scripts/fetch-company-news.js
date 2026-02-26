@@ -129,7 +129,7 @@ async function summarizeArticle(title, content) {
   content = content.replace(/location\..*?;|userAgent|isAndroid|isIOS|isWechat|isQQ/gi, '');
   // 过滤所有乱码、特殊符号、不可见字符，只保留中文、数字、中文标点
   content = content.replace(/[^\u4e00-\u9fa50-9，。；：“”‘’（）【】、%+]/g, '');
-  // 过滤掉所有非核心信息：来源、发布时间、作者、编辑、媒体号、地理位置、平台信息、时间戳、媒体名称等
+  // 过滤掉所有非核心信息：来源、发布时间、作者、编辑、媒体号、地理位置、平台信息、时间戳、媒体名称、页面无关元素等
   content = content.replace(/来源：.*?([\n。])/g, '$1')
     .replace(/发布时间：.*?([\n。])/g, '$1')
     .replace(/作者：.*?([\n。])/g, '$1')
@@ -139,7 +139,7 @@ async function summarizeArticle(title, content) {
     .replace(/澎湃号/gi, '')
     .replace(/官方账号|媒体号|澎湃新闻|国际金融报|财新|第一财经|证券时报|中国证券报|财联社|华尔街见闻|每日经济新闻|东方财富|同花顺|雪球|新浪财经|界面新闻|彭博|路透|金融时报|华尔街日报/gi, '')
     .replace(/北京|上海|广州|深圳|杭州|成都|武汉|南京/gi, '')
-    .replace(/下载APP|扫码关注|点击查看|微信公众号|微博|小红书/gi, '')
+    .replace(/下载APP|扫码关注|点击查看|微信公众号|微博|小红书|首页打开|返回顶部|登录|注册|忘记密码|验证码|用户中心|我的收藏|分享到/gi, '')
     .replace(/\d{4}年\d{1,2}月\d{1,2}/g, '') // 去除所有日期时间格式
     .replace(/【.*?】/g, '')
     .replace(/\s+/g, ' ')
@@ -157,7 +157,10 @@ async function summarizeArticle(title, content) {
     return keywords.some(key => sentence.includes(key)) && sentence.trim().length > 10;
   });
   
-  let summary = keySentences.join('。').trim();
+  // 句子去重，避免重复内容
+  const uniqueSentences = [...new Set(keySentences.map(s => s.trim()))];
+  
+  let summary = uniqueSentences.join('。').trim();
   if (!summary.endsWith('。')) summary += '。';
   
   // 确保内容完整，不省略
