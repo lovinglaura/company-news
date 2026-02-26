@@ -352,10 +352,7 @@ async function main() {
   // 按价值评分全局排序
   allNews.sort((a, b) => b.valueScore - a.valueScore);
   
-  // 优先保留最近3天的新闻，如果某公司近3天没有新闻，保留近7天的，确保每家公司至少1条
-  const threeDaysAgo = new Date();
-  threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-  threeDaysAgo.setHours(0, 0, 0, 0);
+  // 优先保留最近7天的新闻，确保每家公司至少1条
   const sevenDaysAgo = new Date();
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
   sevenDaysAgo.setHours(0, 0, 0, 0);
@@ -364,24 +361,27 @@ async function main() {
   const companyCount = {};
   const filteredNews = [];
   
-  // 先加3天内的
+  // 加7天内的所有权威来源新闻
   for (const news of allNews) {
     if (!news.publishTime) continue;
     const publishTime = new Date(news.publishTime).getTime();
-    if (publishTime >= threeDaysAgo.getTime()) {
+    if (publishTime >= sevenDaysAgo.getTime()) {
       filteredNews.push(news);
       companyCount[news.company] = (companyCount[news.company] || 0) + 1;
     }
   }
   
-  // 每家公司不足1条的，加7天内的
+  // 每家公司不足1条的，放宽到15天内的
   for (const [companyName, companyInfo] of Object.entries(CONFIG.companies)) {
     const ticker = companyInfo.ticker;
     if (!companyCount[ticker] || companyCount[ticker] < 1) {
+      const fifteenDaysAgo = new Date();
+      fifteenDaysAgo.setDate(fifteenDaysAgo.getDate() - 15);
+      fifteenDaysAgo.setHours(0, 0, 0, 0);
       for (const news of allNews) {
         if (news.company === ticker && news.publishTime) {
           const publishTime = new Date(news.publishTime).getTime();
-          if (publishTime >= sevenDaysAgo.getTime()) {
+          if (publishTime >= fifteenDaysAgo.getTime()) {
             filteredNews.push(news);
             companyCount[ticker] = (companyCount[ticker] || 0) + 1;
             break;
