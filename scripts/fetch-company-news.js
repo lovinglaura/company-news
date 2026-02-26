@@ -165,8 +165,8 @@ async function searchNews(query, timeRange = '1d', maxResults = 10) {
     }
 
     console.log(`   ✅ 找到 ${result.web_items.length} 条新闻`);
-    // 只保留来自权威财经来源的新闻
-    const filteredItems = result.web_items.filter(item => {
+    // 优先保留权威来源，不足的话保留其他来源内容
+    let filteredItems = result.web_items.filter(item => {
       if (!item.url) return false;
       try {
         const url = new URL(item.url);
@@ -176,7 +176,21 @@ async function searchNews(query, timeRange = '1d', maxResults = 10) {
         return false;
       }
     });
-    console.log(`   🎯 筛选出 ${filteredItems.length} 条权威来源新闻`);
+    // 如果权威来源不足3条，补充其他来源内容
+    if (filteredItems.length < 3) {
+      const otherItems = result.web_items.filter(item => {
+        if (!item.url) return false;
+        try {
+          const url = new URL(item.url);
+          const domain = url.hostname.replace('www.', '');
+          return !AUTHORITY_SOURCES.some(source => domain.includes(source));
+        } catch (e) {
+          return false;
+        }
+      });
+      filteredItems = filteredItems.concat(otherItems.slice(0, 3 - filteredItems.length));
+    }
+    console.log(`   🎯 筛选出 ${filteredItems.length} 条新闻（优先权威来源）`);
     return filteredItems.map((item, index) => ({
       title: item.title || '无标题',
       url: item.url,
