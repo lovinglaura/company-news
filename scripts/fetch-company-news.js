@@ -14,6 +14,16 @@ const path = require('path');
 const https = require('https');
 const { Config, SearchClient, ChatClient } = require('coze-coding-dev-sdk');
 
+// 权威财经来源白名单
+const AUTHORITY_SOURCES = [
+  // 国内权威财经网站
+  'caixin.com', 'eeo.com.cn', 'yicai.com', 'stcn.com', 'cnstock.com.cn',
+  'cs.com.cn', 'cls.cn', 'wallstreetcn.com', 'nbd.com.cn', 'eastmoney.com',
+  '10jqka.com.cn', 'xueqiu.com', 'cninfo.com.cn', 'finance.sina.com.cn', 'jiemian.com',
+  // 国际顶级财经网站
+  'bloomberg.com', 'reuters.com', 'ft.com', 'wsj.com'
+];
+
 // 配置 - 三级搜索策略
 const CONFIG = {
   companies: {
@@ -155,7 +165,19 @@ async function searchNews(query, timeRange = '1d', maxResults = 10) {
     }
 
     console.log(`   ✅ 找到 ${result.web_items.length} 条新闻`);
-    return result.web_items.map((item, index) => ({
+    // 只保留来自权威财经来源的新闻
+    const filteredItems = result.web_items.filter(item => {
+      if (!item.url) return false;
+      try {
+        const url = new URL(item.url);
+        const domain = url.hostname.replace('www.', '');
+        return AUTHORITY_SOURCES.some(source => domain.includes(source));
+      } catch (e) {
+        return false;
+      }
+    });
+    console.log(`   🎯 筛选出 ${filteredItems.length} 条权威来源新闻`);
+    return filteredItems.map((item, index) => ({
       title: item.title || '无标题',
       url: item.url,
       source: item.site_name || '未知来源',
