@@ -100,11 +100,15 @@ async function fetchArticleContent(url) {
  * 深度总结新闻内容，保留关键信息和数据，去除来源等非核心信息
  */
 async function summarizeArticle(title, content) {
-  // 过滤无效内容（302跳转、403、空内容等）
+  // 过滤无效内容（302跳转、403、空内容、js代码等）
   if (content.includes('302 Found') || content.includes('403 Forbidden') || content.includes('NotFound') || content.trim().length < 50) {
-    // 抓取失败直接用标题+搜索摘要
+    // 抓取失败直接用标题
     return title;
   }
+  
+  // 去掉script标签和js代码
+  content = content.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
+  content = content.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
   
   // 过滤掉来源、发布时间、作者等非关键信息
   let summary = content.replace(/<[^>]*>/g, '') // 去掉HTML标签
@@ -115,8 +119,13 @@ async function summarizeArticle(title, content) {
     .replace(/编辑：.*?([\n。])/g, '$1')
     .replace(/本文来自.*?([\n。])/g, '$1')
     .replace(/【.*?】/g, '')
-    .replace(/stgw|nginx|cloudflare/gi, '')
+    .replace(/stgw|nginx|cloudflare|window\.|function\(|var |let |const /gi, '')
     .trim();
+  
+  // 如果过滤后内容还是太短，直接用标题
+  if (summary.length < 30) {
+    return title;
+  }
   
   // 只保留前200字核心内容
   return summary.length > 200 ? summary.substring(0, 200) + '...' : summary;
