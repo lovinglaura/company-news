@@ -19,7 +19,6 @@
   "author": "金珂",
   "license": "MIT",
   "dependencies": {
-    "coze-coding-dev-sdk": "^1.0.0"
   },
   "devDependencies": {}
 }
