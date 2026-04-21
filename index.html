@@ -1,456 +1,743 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>金珂重点关注公司新闻动态</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>*{font-family:system-ui,-apple-system,sans-serif}.card-hover{transition:all .3s}.card-hover:hover{transform:translateY(-2px)}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金珂重点关注公司新闻动态 | 每日公司新闻深度分析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+    </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-  <div class="max-w-6xl mx-auto px-4 py-8">
-    <header class="mb-8">
-      <h1 class="text-2xl font-bold mb-2">📈 金珂重点关注公司新闻动态</h1>
-      <p class="text-gray-600">深度分析完整展示 + 评分逻辑透明</p>
-      <p class="text-sm text-gray-500 mt-1">🕒 最后更新：2026年04月20日 19:40</p>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <!-- 头部 -->
+    <header class="gradient-bg text-white py-10 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-3 mb-3">
+                <span class="text-5xl">📈</span>
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold mb-1">金珂重点关注公司新闻动态</h1>
+                    <p class="text-white/90 text-lg font-medium">深度分析 · 股价影响评估 · 每日更新</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 text-white/80 text-sm mt-4">
+                <span class="flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    更新时间：2026/04/21 09:25:42
+                </span>
+                <span class="flex items-center gap-1">
+                    <span class="text-lg">📊</span>
+                    今日精选：8条（从42条中筛选）
+                </span>
+            </div>
+        </div>
     </header>
 
-    <!-- 说明 -->
-    <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
-      <h3 class="font-semibold mb-2">✅ 已完成所有优化要求：</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-        <div>1. 深度分析：总结提炼原文，保留逻辑，高亮重点</div>
-        <div>2. 完整展示：无任何内容截断，完整呈现</div>
-        <div>3. 评分透明：明确评分标准和依据</div>
-      </div>
+    <!-- 统计栏 -->
+    <div class="bg-white border-b border-gray-200 py-6 px-4 shadow-sm">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-bold text-gray-900">📈 公司新闻统计</h2>
+                <span class="text-sm text-gray-500">共覆盖 5 家公司</span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                
+                <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xl">🔍</span>
+                    <span class="font-semibold text-gray-900">谷歌</span>
+                  </div>
+                  <div class="text-sm text-gray-600">
+                    <div class="flex items-center justify-between">
+                      <span>新闻数量:</span>
+                      <span class="font-medium">0条</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-1">
+                      <span>高影响新闻:</span>
+                      <span class="font-medium text-red-600">0条</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xl">💻</span>
+                    <span class="font-semibold text-gray-900">英伟达</span>
+                  </div>
+                  <div class="text-sm text-gray-600">
+                    <div class="flex items-center justify-between">
+                      <span>新闻数量:</span>
+                      <span class="font-medium">3条</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-1">
+                      <span>高影响新闻:</span>
+                      <span class="font-medium text-red-600">0条</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xl">🚗</span>
+                    <span class="font-semibold text-gray-900">特斯拉</span>
+                  </div>
+                  <div class="text-sm text-gray-600">
+                    <div class="flex items-center justify-between">
+                      <span>新闻数量:</span>
+                      <span class="font-medium">1条</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-1">
+                      <span>高影响新闻:</span>
+                      <span class="font-medium text-red-600">0条</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xl">🎮</span>
+                    <span class="font-semibold text-gray-900">腾讯</span>
+                  </div>
+                  <div class="text-sm text-gray-600">
+                    <div class="flex items-center justify-between">
+                      <span>新闻数量:</span>
+                      <span class="font-medium">1条</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-1">
+                      <span>高影响新闻:</span>
+                      <span class="font-medium text-red-600">0条</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xl">🍶</span>
+                    <span class="font-semibold text-gray-900">茅台</span>
+                  </div>
+                  <div class="text-sm text-gray-600">
+                    <div class="flex items-center justify-between">
+                      <span>新闻数量:</span>
+                      <span class="font-medium">3条</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-1">
+                      <span>高影响新闻:</span>
+                      <span class="font-medium text-red-600">2条</span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- 新闻列表 -->
-    <main class="space-y-6">
-      
-<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
-  <!-- 头部 -->
-  <div class="flex justify-between items-start mb-4">
-    <div class="flex items-center space-x-3">
-      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-        <span>📰</span>
-      </div>
-      <div>
-        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">谷歌</span>
-        <span class="ml-2 text-xs text-gray-500">GOOGL</span>
-      </div>
-    </div>
-    <div class="text-right">
-      <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">极低影响 (9/10)</span>
-      <div class="text-xs text-gray-500 mt-1">日常消息</div>
-    </div>
-  </div>
+    <!-- 主内容区 -->
+    <main class="max-w-7xl mx-auto py-8 px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-300 hover:shadow-lg border border-gray-100">
+                <!-- 头部 -->
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">🍶</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                            茅台
+                        </span>
+                    </div>
+                    <span class="inline-block px-2 py-1 rounded-full text-xs font-medium border bg-red-100 border-red-500 text-red-900">
+                        🔥 必读 9.6分
+                    </span>
+                </div>
 
-  <!-- 标题 -->
-  <h3 class="text-lg font-bold mb-3">AI能赚钱!谷歌年营收首破4000亿美元，搜索广告收入不降反增</h3>
-  
-  <!-- 深度分析 -->
-  <div class="bg-gray-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold mt-3 mb-1">📊 深度分析：AI能赚钱!谷歌年营收首破4000亿美元，搜索广告收入不降反增</h4><br>**📰 来源：搜狐**<br><br>#<h4 class="font-semibold mt-3 mb-1">🔍 核心要点</h4>1. **谷歌年营收首破4000亿美元，搜索广告收入不降反增<br>大力财经<br>2026-04-20 14:24<br>今天凌晨，谷歌母公司 Alphabet 公布了 2025 年第四季度财报：总营收 1138  <br>本文作者：大力财经**<br><br>#<h4 class="font-semibold mt-3 mb-1">📈 重要数据</h4>- 🎯 **4000亿**<br><br>#<h4 class="font-semibold mt-3 mb-1">💼 影响分析</h4>**短期影响：** 财报类新闻直接影响股价，行业趋势类影响市场预期<br>**长期影响：** 技术创新和合作将增强公司竞争力<br><br>#<h4 class="font-semibold mt-3 mb-1">📝 完整原文摘要</h4>AI能赚钱！谷歌年营收首破4000亿美元，搜索广告收入不降反增<br>大力财经<br>2026-04-20 14:24<br>今天凌晨，谷歌母公司 Alphabet 公布了 2025 年第四季度财报：总营收 1138  <br>本文作者：大力财经<br><br>
-  </div>
-  
-  <!-- 评分说明 -->
-  <div class="bg-blue-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold text-blue-800 mb-2">📊 评分说明</h4>
-    <div class="grid grid-cols-2 gap-2 text-xs">
-      <div>
-        <span class="font-medium">影响评分：9/10</span>
-        <div class="text-gray-600">日常消息</div>
-      </div>
-      <div>
-        <span class="font-medium">价值评分：6/10</span>
-        <div class="text-gray-600">无实质内容</div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- 底部 -->
-  <div class="flex justify-between items-center pt-3 border-t">
-    <div class="text-sm text-gray-600">
-      综合评分：8/10
-    </div>
-    <a href="https://news.sohu.com/a/984039106_211762" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">
-      阅读原文 <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-    </a>
-  </div>
-</div>
+                <!-- 标题 -->
+                <h3 class="text-lg font-bold text-gray-900 mb-3 leading-tight">V观财报｜贵州茅台2025年净利润同比降4.53%，拟分红350.33亿元</h3>
 
-<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
-  <!-- 头部 -->
-  <div class="flex justify-between items-start mb-4">
-    <div class="flex items-center space-x-3">
-      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-        <span>📰</span>
-      </div>
-      <div>
-        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">英伟达</span>
-        <span class="ml-2 text-xs text-gray-500">NVDA</span>
-      </div>
-    </div>
-    <div class="text-right">
-      <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">极低影响 (9/10)</span>
-      <div class="text-xs text-gray-500 mt-1">日常消息</div>
-    </div>
-  </div>
+                <!-- 深度摘要 -->
+                <div class="bg-gradient-to-r from-amber-50 to-amber-100 border-l-4 border-blue-500 p-4 rounded-r-lg mb-4">
+                    <div class="font-semibold text-blue-800 mb-2 flex items-center">
+                        <span class="mr-2">📖</span>
+                        <span>深度解读</span>
+                    </div>
+                    <p class="text-blue-900 text-sm leading-relaxed">V观财报｜贵州茅台2025年净利润同比降4.53%，拟分红350.33亿元</p>
+                </div>
 
-  <!-- 标题 -->
-  <h3 class="text-lg font-bold mb-3">英伟达Q4营收393亿美元创纪录 净利润大增80%</h3>
-  
-  <!-- 深度分析 -->
-  <div class="bg-gray-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold mt-3 mb-1">📊 深度分析：英伟达Q4营收393亿美元创纪录 净利润大增80%</h4><br>**📰 来源：中华网**<br><br>#<h4 class="font-semibold mt-3 mb-1">🔍 核心要点</h4>1. **英伟达Q4营收393亿美元创纪录 净利润大增80%<br>今日头条<br>2025-02-27 09:59:59<br>英伟达Q4营收393亿美元创纪录**<br>2. **北京时间2月27日，英伟达公布了2025财年第四季度财报，展现了**<br><br>#<h4 class="font-semibold mt-3 mb-1">📈 重要数据</h4>- 🎯 **393亿**<br>- 🎯 **80%**<br>- 🎯 **393亿**<br><br>#<h4 class="font-semibold mt-3 mb-1">💼 影响分析</h4>**短期影响：** 财报类新闻直接影响股价，行业趋势类影响市场预期<br>**长期影响：** 技术创新和合作将增强公司竞争力<br><br>#<h4 class="font-semibold mt-3 mb-1">📝 完整原文摘要</h4>英伟达Q4营收393亿美元创纪录 净利润大增80%<br>今日头条<br>2025-02-27 09:59:59<br>英伟达Q4营收393亿美元创纪录。北京时间2月27日，英伟达公布了2025财年第四季度财报，展现了<br><br>
-  </div>
-  
-  <!-- 评分说明 -->
-  <div class="bg-blue-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold text-blue-800 mb-2">📊 评分说明</h4>
-    <div class="grid grid-cols-2 gap-2 text-xs">
-      <div>
-        <span class="font-medium">影响评分：9/10</span>
-        <div class="text-gray-600">日常消息</div>
-      </div>
-      <div>
-        <span class="font-medium">价值评分：6/10</span>
-        <div class="text-gray-600">无实质内容</div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- 底部 -->
-  <div class="flex justify-between items-center pt-3 border-t">
-    <div class="text-sm text-gray-600">
-      综合评分：8/10
-    </div>
-    <a href="https://3g.china.com/act/news/10000169/20250227/48020333.html" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">
-      阅读原文 <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-    </a>
-  </div>
-</div>
+                <!-- 逻辑框架 -->
+                <div class="mt-2 flex items-center text-sm text-gray-600">
+                    <span class="font-medium mr-2">🔗 逻辑框架:</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full">数据发布→市场反应→投资建议</span>
+                </div>
 
-<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
-  <!-- 头部 -->
-  <div class="flex justify-between items-start mb-4">
-    <div class="flex items-center space-x-3">
-      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-        <span>📰</span>
-      </div>
-      <div>
-        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">英伟达</span>
-        <span class="ml-2 text-xs text-gray-500">NVDA</span>
-      </div>
-    </div>
-    <div class="text-right">
-      <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">极低影响 (7/10)</span>
-      <div class="text-xs text-gray-500 mt-1">日常消息</div>
-    </div>
-  </div>
+                <!-- 关键数据 -->
+                
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <div class="text-sm font-semibold text-gray-700 mb-2">📊 关键数据</div>
+                    <ul class="space-y-1 text-sm text-gray-700">
+                        <li class="flex items-start"><span class="mr-2">📊</span><span>4.53%</span></li>
+                    </ul>
+                </div>
 
-  <!-- 标题 -->
-  <h3 class="text-lg font-bold mb-3">英伟达第四财季营收393.31亿美元 净利润同比大增80%</h3>
-  
-  <!-- 深度分析 -->
-  <div class="bg-gray-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold mt-3 mb-1">📊 深度分析：英伟达第四财季营收393.31亿美元 净利润同比大增80%</h4><br>**📰 来源：新浪财经**<br><br>#<h4 class="font-semibold mt-3 mb-1">🔍 核心要点</h4>1. **英伟达第四财季营收393.31亿美元 净利润同比大增80%<br>新浪科技<br>新浪科技频道官方账号 02月27日 06:08<br>美股100分时图<br>相关新闻：全文|英伟达Q4业绩会实录：DeepSeek R1点燃 <br>本文作者：新浪科技**<br><br>#<h4 class="font-semibold mt-3 mb-1">📈 重要数据</h4>- 🎯 **393.31亿**<br>- 🎯 **80%**<br><br>#<h4 class="font-semibold mt-3 mb-1">💼 影响分析</h4>**短期影响：** 财报类新闻直接影响股价，行业趋势类影响市场预期<br>**长期影响：** 技术创新和合作将增强公司竞争力<br><br>#<h4 class="font-semibold mt-3 mb-1">📝 完整原文摘要</h4>英伟达第四财季营收393.31亿美元 净利润同比大增80%<br>新浪科技<br>新浪科技频道官方账号 02月27日 06:08<br>美股100分时图<br>相关新闻：全文|英伟达Q4业绩会实录：DeepSeek R1点燃 <br>本文作者：新浪科技<br><br>
-  </div>
-  
-  <!-- 评分说明 -->
-  <div class="bg-blue-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold text-blue-800 mb-2">📊 评分说明</h4>
-    <div class="grid grid-cols-2 gap-2 text-xs">
-      <div>
-        <span class="font-medium">影响评分：7/10</span>
-        <div class="text-gray-600">日常消息</div>
-      </div>
-      <div>
-        <span class="font-medium">价值评分：6/10</span>
-        <div class="text-gray-600">无实质内容</div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- 底部 -->
-  <div class="flex justify-between items-center pt-3 border-t">
-    <div class="text-sm text-gray-600">
-      综合评分：7/10
-    </div>
-    <a href="https://finance.sina.cn/usstock/mggd/2025-02-27/detail-inemwiqt8257481.d.html?vt=4&cid=76729&node_id=76729" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">
-      阅读原文 <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-    </a>
-  </div>
-</div>
+                <!-- 重要信息 -->
+                
 
-<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
-  <!-- 头部 -->
-  <div class="flex justify-between items-start mb-4">
-    <div class="flex items-center space-x-3">
-      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-        <span>📰</span>
-      </div>
-      <div>
-        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">特斯拉</span>
-        <span class="ml-2 text-xs text-gray-500">TSLA</span>
-      </div>
-    </div>
-    <div class="text-right">
-      <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">极低影响 (10/10)</span>
-      <div class="text-xs text-gray-500 mt-1">日常消息</div>
-    </div>
-  </div>
+                <!-- 股价影响 -->
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <div class="text-sm font-semibold text-gray-700 mb-2">💰 股价影响评估</div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded font-medium">
+                            高影响
+                        </span>
+                        <span class="text-sm text-gray-600">对股价有显著短期影响（高级别），建议重点关注</span>
+                    </div>
+                </div>
 
-  <!-- 标题 -->
-  <h3 class="text-lg font-bold mb-3">特斯拉公布2025年财报:营收史上首次下滑 全年净利润38亿美元近腰斩</h3>
-  
-  <!-- 深度分析 -->
-  <div class="bg-gray-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold mt-3 mb-1">📊 深度分析：特斯拉公布2025年财报:营收史上首次下滑 全年净利润38亿美元近腰斩</h4><br>**📰 来源：新浪财经**<br><br>#<h4 class="font-semibold mt-3 mb-1">🔍 核心要点</h4>1. **特斯拉公布2025年财报:营收史上首次下滑 全年净利润38亿美元近腰斩<br>2026年04月19日 23:32<br>新浪网<br>特斯拉今日发布2025全年及四季度财报**<br>2. **财报显示，特斯拉第四季度总营收为249.01**<br><br>#<h4 class="font-semibold mt-3 mb-1">📈 重要数据</h4>- 🎯 **38亿**<br><br>#<h4 class="font-semibold mt-3 mb-1">💼 影响分析</h4>**短期影响：** 财报类新闻直接影响股价，行业趋势类影响市场预期<br>**长期影响：** 技术创新和合作将增强公司竞争力<br><br>#<h4 class="font-semibold mt-3 mb-1">📝 完整原文摘要</h4>特斯拉公布2025年财报:营收史上首次下滑 全年净利润38亿美元近腰斩<br>2026年04月19日 23:32<br>新浪网<br>特斯拉今日发布2025全年及四季度财报。财报显示，特斯拉第四季度总营收为249.01<br><br>
-  </div>
-  
-  <!-- 评分说明 -->
-  <div class="bg-blue-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold text-blue-800 mb-2">📊 评分说明</h4>
-    <div class="grid grid-cols-2 gap-2 text-xs">
-      <div>
-        <span class="font-medium">影响评分：10/10</span>
-        <div class="text-gray-600">日常消息</div>
-      </div>
-      <div>
-        <span class="font-medium">价值评分：6/10</span>
-        <div class="text-gray-600">无实质内容</div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- 底部 -->
-  <div class="flex justify-between items-center pt-3 border-t">
-    <div class="text-sm text-gray-600">
-      综合评分：8/10
-    </div>
-    <a href="https://cj.sina.cn/articles/view/7857201856/1d45362c001901tkou?froms=ggmp&vt=4" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">
-      阅读原文 <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-    </a>
-  </div>
-</div>
+                <!-- 页脚 -->
+                <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
+                    <div class="flex items-center gap-2">
+                        <span>📅 2026-04-16</span>
+                        <span>📰 中国新闻网</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>🏷️ 600519.SS</span>
+                    </div>
+                </div>
 
-<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
-  <!-- 头部 -->
-  <div class="flex justify-between items-start mb-4">
-    <div class="flex items-center space-x-3">
-      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-        <span>📰</span>
-      </div>
-      <div>
-        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">特斯拉</span>
-        <span class="ml-2 text-xs text-gray-500">TSLA</span>
-      </div>
-    </div>
-    <div class="text-right">
-      <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">极低影响 (10/10)</span>
-      <div class="text-xs text-gray-500 mt-1">日常消息</div>
-    </div>
-  </div>
+                <!-- 链接 -->
+                <div class="mt-3">
+                    <a href="https://m.chinanews.com/wap/detail/chs/zw/jw667377.shtml" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                        <span>阅读原文</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-300 hover:shadow-lg border border-gray-100">
+                <!-- 头部 -->
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">🍶</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                            茅台
+                        </span>
+                    </div>
+                    <span class="inline-block px-2 py-1 rounded-full text-xs font-medium border bg-red-100 border-red-500 text-red-900">
+                        🔥 必读 9.6分
+                    </span>
+                </div>
 
-  <!-- 标题 -->
-  <h3 class="text-lg font-bold mb-3">特斯拉发布2025全年财报:营收首次下滑，四季度净利润暴跌61%</h3>
-  
-  <!-- 深度分析 -->
-  <div class="bg-gray-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold mt-3 mb-1">📊 深度分析：特斯拉发布2025全年财报:营收首次下滑，四季度净利润暴跌61%</h4><br>**📰 来源：东方财富网**<br><br>#<h4 class="font-semibold mt-3 mb-1">🔍 核心要点</h4>1. **特斯拉发布2025全年财报：营收首次下滑，四季度净利润暴跌61%<br>2026年04月19日 09:57<br>来源： 新华财经<br>新华财经上海1月29日电1月29日，<br>特斯拉<br>发布2025年第四季度及全年财报**<br><br>#<h4 class="font-semibold mt-3 mb-1">📈 重要数据</h4>- 🎯 **61%**<br><br>#<h4 class="font-semibold mt-3 mb-1">💼 影响分析</h4>**短期影响：** 财报类新闻直接影响股价，行业趋势类影响市场预期<br>**长期影响：** 技术创新和合作将增强公司竞争力<br><br>#<h4 class="font-semibold mt-3 mb-1">📝 完整原文摘要</h4>特斯拉发布2025全年财报：营收首次下滑，四季度净利润暴跌61%<br>2026年04月19日 09:57<br>来源： 新华财经<br>新华财经上海1月29日电1月29日，<br>特斯拉<br>发布2025年第四季度及全年财报。<br><br>
-  </div>
-  
-  <!-- 评分说明 -->
-  <div class="bg-blue-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold text-blue-800 mb-2">📊 评分说明</h4>
-    <div class="grid grid-cols-2 gap-2 text-xs">
-      <div>
-        <span class="font-medium">影响评分：10/10</span>
-        <div class="text-gray-600">日常消息</div>
-      </div>
-      <div>
-        <span class="font-medium">价值评分：6/10</span>
-        <div class="text-gray-600">无实质内容</div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- 底部 -->
-  <div class="flex justify-between items-center pt-3 border-t">
-    <div class="text-sm text-gray-600">
-      综合评分：8/10
-    </div>
-    <a href="https://finance.eastmoney.com/a/202601293634885043.html" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">
-      阅读原文 <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-    </a>
-  </div>
-</div>
+                <!-- 标题 -->
+                <h3 class="text-lg font-bold text-gray-900 mb-3 leading-tight">贵州茅台2025年总营收约1721亿元，全年分红将达650.33亿元</h3>
 
-<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
-  <!-- 头部 -->
-  <div class="flex justify-between items-start mb-4">
-    <div class="flex items-center space-x-3">
-      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-        <span>📰</span>
-      </div>
-      <div>
-        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">腾讯</span>
-        <span class="ml-2 text-xs text-gray-500">0700.HK</span>
-      </div>
-    </div>
-    <div class="text-right">
-      <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">极低影响 (8/10)</span>
-      <div class="text-xs text-gray-500 mt-1">日常消息</div>
-    </div>
-  </div>
+                <!-- 深度摘要 -->
+                <div class="bg-gradient-to-r from-amber-50 to-amber-100 border-l-4 border-blue-500 p-4 rounded-r-lg mb-4">
+                    <div class="font-semibold text-blue-800 mb-2 flex items-center">
+                        <span class="mr-2">📖</span>
+                        <span>深度解读</span>
+                    </div>
+                    <p class="text-blue-900 text-sm leading-relaxed">贵州茅台2025年总营收约1721亿元，全年分红将达650.33亿元</p>
+                </div>
 
-  <!-- 标题 -->
-  <h3 class="text-lg font-bold mb-3">腾讯发布三季度财报:AI投入持续转化</h3>
-  
-  <!-- 深度分析 -->
-  <div class="bg-gray-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold mt-3 mb-1">📊 深度分析：腾讯发布三季度财报:AI投入持续转化</h4><br>**📰 来源：腾讯网**<br><br>#<h4 class="font-semibold mt-3 mb-1">🔍 核心要点</h4>1. **腾讯发布三季度财报：AI投入持续转化<br>中国日报网<br>2025年11月18日14:14 北京 中国日报中文网官方账号<br>中国日报11月13日电（记者 程钰）腾讯控股（00700.HK）发布三季度财报，AI投 <br>本文作者：中国日报网**<br><br>#<h4 class="font-semibold mt-3 mb-1">💼 影响分析</h4>**短期影响：** 财报类新闻直接影响股价，行业趋势类影响市场预期<br>**长期影响：** 技术创新和合作将增强公司竞争力<br><br>#<h4 class="font-semibold mt-3 mb-1">📝 完整原文摘要</h4>腾讯发布三季度财报：AI投入持续转化<br>中国日报网<br>2025年11月18日14:14 北京 中国日报中文网官方账号<br>中国日报11月13日电（记者 程钰）腾讯控股（00700.HK）发布三季度财报，AI投 <br>本文作者：中国日报网<br><br>
-  </div>
-  
-  <!-- 评分说明 -->
-  <div class="bg-blue-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold text-blue-800 mb-2">📊 评分说明</h4>
-    <div class="grid grid-cols-2 gap-2 text-xs">
-      <div>
-        <span class="font-medium">影响评分：8/10</span>
-        <div class="text-gray-600">日常消息</div>
-      </div>
-      <div>
-        <span class="font-medium">价值评分：5/10</span>
-        <div class="text-gray-600">无实质内容</div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- 底部 -->
-  <div class="flex justify-between items-center pt-3 border-t">
-    <div class="text-sm text-gray-600">
-      综合评分：7/10
-    </div>
-    <a href="https://view.inews.qq.com/k/20251118A03W2U00?no-redirect=1" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">
-      阅读原文 <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-    </a>
-  </div>
-</div>
+                <!-- 逻辑框架 -->
+                <div class="mt-2 flex items-center text-sm text-gray-600">
+                    <span class="font-medium mr-2">🔗 逻辑框架:</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full">事件→进展→意义</span>
+                </div>
 
-<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
-  <!-- 头部 -->
-  <div class="flex justify-between items-start mb-4">
-    <div class="flex items-center space-x-3">
-      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-        <span>📰</span>
-      </div>
-      <div>
-        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">腾讯</span>
-        <span class="ml-2 text-xs text-gray-500">0700.HK</span>
-      </div>
-    </div>
-    <div class="text-right">
-      <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">极低影响 (9/10)</span>
-      <div class="text-xs text-gray-500 mt-1">日常消息</div>
-    </div>
-  </div>
+                <!-- 关键数据 -->
+                
 
-  <!-- 标题 -->
-  <h3 class="text-lg font-bold mb-3">腾讯三季报:研发投入228亿同比增长28%，AI场景化落地加速</h3>
-  
-  <!-- 深度分析 -->
-  <div class="bg-gray-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold mt-3 mb-1">📊 深度分析：腾讯三季报:研发投入228亿同比增长28%，AI场景化落地加速</h4><br>**📰 来源：深圳新闻网**<br><br>#<h4 class="font-semibold mt-3 mb-1">🔍 核心要点</h4>1. **腾讯三季报：研发投入228亿同比增长28%，AI场景化落地加速<br>来源：深圳新闻网 发布时间：2025-11-14<br>AI视界<br>关键词<br>简介<br>重点<br>分析<br>腾讯控股2025年第三季度财报显示，公司持续加码人**<br><br>#<h4 class="font-semibold mt-3 mb-1">📈 重要数据</h4>- 🎯 **228亿**<br>- 🎯 **28%**<br><br>#<h4 class="font-semibold mt-3 mb-1">💼 影响分析</h4>**短期影响：** 财报类新闻直接影响股价，行业趋势类影响市场预期<br>**长期影响：** 技术创新和合作将增强公司竞争力<br><br>#<h4 class="font-semibold mt-3 mb-1">📝 完整原文摘要</h4>腾讯三季报：研发投入228亿同比增长28%，AI场景化落地加速<br>来源：深圳新闻网 发布时间：2025-11-14<br>AI视界<br>关键词<br>简介<br>重点<br>分析<br>腾讯控股2025年第三季度财报显示，公司持续加码人<br><br>
-  </div>
-  
-  <!-- 评分说明 -->
-  <div class="bg-blue-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold text-blue-800 mb-2">📊 评分说明</h4>
-    <div class="grid grid-cols-2 gap-2 text-xs">
-      <div>
-        <span class="font-medium">影响评分：9/10</span>
-        <div class="text-gray-600">日常消息</div>
-      </div>
-      <div>
-        <span class="font-medium">价值评分：7/10</span>
-        <div class="text-gray-600">无实质内容</div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- 底部 -->
-  <div class="flex justify-between items-center pt-3 border-t">
-    <div class="text-sm text-gray-600">
-      综合评分：8/10
-    </div>
-    <a href="http://www.sznews.com/news/content/2025-11/14/content_31769207.htm" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">
-      阅读原文 <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-    </a>
-  </div>
-</div>
+                <!-- 重要信息 -->
+                
 
-<div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6">
-  <!-- 头部 -->
-  <div class="flex justify-between items-start mb-4">
-    <div class="flex items-center space-x-3">
-      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-        <span>📰</span>
-      </div>
-      <div>
-        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">腾讯</span>
-        <span class="ml-2 text-xs text-gray-500">0700.HK</span>
-      </div>
-    </div>
-    <div class="text-right">
-      <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">极低影响 (8/10)</span>
-      <div class="text-xs text-gray-500 mt-1">日常消息</div>
-    </div>
-  </div>
+                <!-- 股价影响 -->
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <div class="text-sm font-semibold text-gray-700 mb-2">💰 股价影响评估</div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded font-medium">
+                            高影响
+                        </span>
+                        <span class="text-sm text-gray-600">对股价有显著短期影响（高级别），建议重点关注</span>
+                    </div>
+                </div>
 
-  <!-- 标题 -->
-  <h3 class="text-lg font-bold mb-3">营收、净利全面超预期,三季度平均每天净赚6.86亿元,三季报出炉!国际市场游戏收入首次突破200亿元</h3>
-  
-  <!-- 深度分析 -->
-  <div class="bg-gray-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold mt-3 mb-1">📊 深度分析：营收、净利全面超预期,三季度平均每天净赚6.86亿元,三季报出炉!国际市场游戏收入首次突破200亿元</h4><br>**📰 来源：新浪财经**<br><br>#<h4 class="font-semibold mt-3 mb-1">🔍 核心要点</h4>1. **营收、净利全面超预期,三季度平均每天净赚6.86亿元,三季报出炉!国际市场游戏收入首次突破200亿元<br>2026年04月18日 03:25 看点资讯<br>营收、净利全面超预期**<br><br>#<h4 class="font-semibold mt-3 mb-1">📈 重要数据</h4>- 🎯 **6.86亿**<br>- 🎯 **200亿**<br><br>#<h4 class="font-semibold mt-3 mb-1">💼 影响分析</h4>**短期影响：** 财报类新闻直接影响股价，行业趋势类影响市场预期<br>**长期影响：** 技术创新和合作将增强公司竞争力<br><br>#<h4 class="font-semibold mt-3 mb-1">📝 完整原文摘要</h4>营收、净利全面超预期,三季度平均每天净赚6.86亿元,三季报出炉!国际市场游戏收入首次突破200亿元<br>2026年04月18日 03:25 看点资讯<br>营收、净利全面超预期！<br>11月13日盘中，腾讯控股在<br><br>
-  </div>
-  
-  <!-- 评分说明 -->
-  <div class="bg-blue-50 p-4 rounded-lg mb-4">
-    <h4 class="font-semibold text-blue-800 mb-2">📊 评分说明</h4>
-    <div class="grid grid-cols-2 gap-2 text-xs">
-      <div>
-        <span class="font-medium">影响评分：8/10</span>
-        <div class="text-gray-600">日常消息</div>
-      </div>
-      <div>
-        <span class="font-medium">价值评分：6/10</span>
-        <div class="text-gray-600">无实质内容</div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- 底部 -->
-  <div class="flex justify-between items-center pt-3 border-t">
-    <div class="text-sm text-gray-600">
-      综合评分：7/10
-    </div>
-    <a href="https://cj.sina.com.cn/articles/view/7880068201/1d5b04c6901901uup8?finpagefr=ttzz&froms=ttmp" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm">
-      阅读原文 <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-    </a>
-  </div>
-</div>
+                <!-- 页脚 -->
+                <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
+                    <div class="flex items-center gap-2">
+                        <span>📅 2026-04-17</span>
+                        <span>📰 今日头条</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>🏷️ 600519.SS</span>
+                    </div>
+                </div>
 
+                <!-- 链接 -->
+                <div class="mt-3">
+                    <a href="http://m.toutiao.com/group/7629490912011354643/?upstream_biz=VolcEngine" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                        <span>阅读原文</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-300 hover:shadow-lg border border-gray-100">
+                <!-- 头部 -->
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">💻</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            英伟达
+                        </span>
+                    </div>
+                    <span class="inline-block px-2 py-1 rounded-full text-xs font-medium border bg-amber-100 border-amber-500 text-amber-900">
+                        ⭐ 推荐 7.5分
+                    </span>
+                </div>
+
+                <!-- 标题 -->
+                <h3 class="text-lg font-bold text-gray-900 mb-3 leading-tight">NVIDIA发布595.97 WHQL驱动：修复《光环：无限》等游戏问题</h3>
+
+                <!-- 深度摘要 -->
+                <div class="bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-blue-500 p-4 rounded-r-lg mb-4">
+                    <div class="font-semibold text-blue-800 mb-2 flex items-center">
+                        <span class="mr-2">📖</span>
+                        <span>深度解读</span>
+                    </div>
+                    <p class="text-blue-900 text-sm leading-relaxed">发布57驱动：修复光环：无限等游戏问题中华网软件中华网软件首页软件游戏资讯专题首页资讯新闻发布57驱动：修复光环：无限等游戏问题快科技3月25日消息，今日发布了57显卡驱动，本次更新未包含新游戏支持或专项优化，主要聚焦于修复，涉及光环：无限、杀手：暗杀世界两款游戏，以及与即时回放共存时的稳定性问题。</p>
+                </div>
+
+                <!-- 逻辑框架 -->
+                <div class="mt-2 flex items-center text-sm text-gray-600">
+                    <span class="font-medium mr-2">🔗 逻辑框架:</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full">事件→进展→意义</span>
+                </div>
+
+                <!-- 关键数据 -->
+                
+
+                <!-- 重要信息 -->
+                
+                <div class="mt-3">
+                    <div class="text-sm font-semibold text-gray-700 mb-1">🎯 重要信息</div>
+                    <div class="flex flex-wrap gap-1">
+                        <span class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs rounded border border-indigo-200">发布</span>
+                    </div>
+                </div>
+
+                <!-- 股价影响 -->
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <div class="text-sm font-semibold text-gray-700 mb-2">💰 股价影响评估</div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded font-medium">
+                            低影响
+                        </span>
+                        <span class="text-sm text-gray-600">对股价有中等长期影响，建议关注</span>
+                    </div>
+                </div>
+
+                <!-- 页脚 -->
+                <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
+                    <div class="flex items-center gap-2">
+                        <span>📅 2026-04-21</span>
+                        <span>📰 中华网软件</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>🏷️ NVDA</span>
+                    </div>
+                </div>
+
+                <!-- 链接 -->
+                <div class="mt-3">
+                    <a href="https://soft.china.com/article/2172992.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                        <span>阅读原文</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-300 hover:shadow-lg border border-gray-100">
+                <!-- 头部 -->
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">💻</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            英伟达
+                        </span>
+                    </div>
+                    <span class="inline-block px-2 py-1 rounded-full text-xs font-medium border bg-amber-100 border-amber-500 text-amber-900">
+                        ⭐ 推荐 7.5分
+                    </span>
+                </div>
+
+                <!-- 标题 -->
+                <h3 class="text-lg font-bold text-gray-900 mb-3 leading-tight">DRAM供应告急 AI与游戏显卡争夺芯片资源</h3>
+
+                <!-- 深度摘要 -->
+                <div class="bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-blue-500 p-4 rounded-r-lg mb-4">
+                    <div class="font-semibold text-blue-800 mb-2 flex items-center">
+                        <span class="mr-2">📖</span>
+                        <span>深度解读</span>
+                    </div>
+                    <p class="text-blue-900 text-sm leading-relaxed">供应告急与游戏显卡争夺芯片资源显存产能市场26年4月21日频道最新文章频道最新文章供应告急与游戏显卡争夺芯片资源科语原创。</p>
+                </div>
+
+                <!-- 逻辑框架 -->
+                <div class="mt-2 flex items-center text-sm text-gray-600">
+                    <span class="font-medium mr-2">🔗 逻辑框架:</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full">事件→进展→意义</span>
+                </div>
+
+                <!-- 关键数据 -->
+                
+
+                <!-- 重要信息 -->
+                
+
+                <!-- 股价影响 -->
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <div class="text-sm font-semibold text-gray-700 mb-2">💰 股价影响评估</div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded font-medium">
+                            低影响
+                        </span>
+                        <span class="text-sm text-gray-600">对股价有中等长期影响，建议关注</span>
+                    </div>
+                </div>
+
+                <!-- 页脚 -->
+                <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
+                    <div class="flex items-center gap-2">
+                        <span>📅 2026-04-21</span>
+                        <span>📰 手机搜狐网</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>🏷️ NVDA</span>
+                    </div>
+                </div>
+
+                <!-- 链接 -->
+                <div class="mt-3">
+                    <a href="https://m.sohu.com/a/1012120653_122487616/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                        <span>阅读原文</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-300 hover:shadow-lg border border-gray-100">
+                <!-- 头部 -->
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">💻</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            英伟达
+                        </span>
+                    </div>
+                    <span class="inline-block px-2 py-1 rounded-full text-xs font-medium border bg-amber-100 border-amber-500 text-amber-900">
+                        ⭐ 推荐 7.5分
+                    </span>
+                </div>
+
+                <!-- 标题 -->
+                <h3 class="text-lg font-bold text-gray-900 mb-3 leading-tight">SK海力士已开始量产英伟达SOCAMM2内存模块</h3>
+
+                <!-- 深度摘要 -->
+                <div class="bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-blue-500 p-4 rounded-r-lg mb-4">
+                    <div class="font-semibold text-blue-800 mb-2 flex items-center">
+                        <span class="mr-2">📖</span>
+                        <span>深度解读</span>
+                    </div>
+                    <p class="text-blue-900 text-sm leading-relaxed">SK海力士已开始量产英伟达SOCAMM2内存模块。具体内容请查看原文链接。</p>
+                </div>
+
+                <!-- 逻辑框架 -->
+                <div class="mt-2 flex items-center text-sm text-gray-600">
+                    <span class="font-medium mr-2">🔗 逻辑框架:</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full">事件→进展→意义</span>
+                </div>
+
+                <!-- 关键数据 -->
+                
+
+                <!-- 重要信息 -->
+                
+
+                <!-- 股价影响 -->
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <div class="text-sm font-semibold text-gray-700 mb-2">💰 股价影响评估</div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded font-medium">
+                            低影响
+                        </span>
+                        <span class="text-sm text-gray-600">对股价有中等长期影响，建议关注</span>
+                    </div>
+                </div>
+
+                <!-- 页脚 -->
+                <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
+                    <div class="flex items-center gap-2">
+                        <span>📅 2026-04-20</span>
+                        <span>📰 腾讯网</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>🏷️ NVDA</span>
+                    </div>
+                </div>
+
+                <!-- 链接 -->
+                <div class="mt-3">
+                    <a href="http://news.qq.com/rain/a/20260420A05DRQ00" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                        <span>阅读原文</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-300 hover:shadow-lg border border-gray-100">
+                <!-- 头部 -->
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">🚗</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            特斯拉
+                        </span>
+                    </div>
+                    <span class="inline-block px-2 py-1 rounded-full text-xs font-medium border bg-amber-100 border-amber-500 text-amber-900">
+                        ⭐ 推荐 7.5分
+                    </span>
+                </div>
+
+                <!-- 标题 -->
+                <h3 class="text-lg font-bold text-gray-900 mb-3 leading-tight">特斯拉即将在上海量产机器人？回应了</h3>
+
+                <!-- 深度摘要 -->
+                <div class="bg-gradient-to-r from-red-50 to-red-100 border-l-4 border-blue-500 p-4 rounded-r-lg mb-4">
+                    <div class="font-semibold text-blue-800 mb-2 flex items-center">
+                        <span class="mr-2">📖</span>
+                        <span>深度解读</span>
+                    </div>
+                    <p class="text-blue-900 text-sm leading-relaxed">特斯拉即将在量产机器人回应了网财经焦点股票新股期指期权行情数据全球美股港股期货外汇银行基金理财债券直播股吧基金吧博客财富号搜索行情中心指数期指期权个股板块排行新股基金港股美股期货外汇黄金。</p>
+                </div>
+
+                <!-- 逻辑框架 -->
+                <div class="mt-2 flex items-center text-sm text-gray-600">
+                    <span class="font-medium mr-2">🔗 逻辑框架:</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full">事件→进展→意义</span>
+                </div>
+
+                <!-- 关键数据 -->
+                
+
+                <!-- 重要信息 -->
+                
+
+                <!-- 股价影响 -->
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <div class="text-sm font-semibold text-gray-700 mb-2">💰 股价影响评估</div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded font-medium">
+                            低影响
+                        </span>
+                        <span class="text-sm text-gray-600">对股价有中等长期影响，建议关注</span>
+                    </div>
+                </div>
+
+                <!-- 页脚 -->
+                <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
+                    <div class="flex items-center gap-2">
+                        <span>📅 2026-04-20</span>
+                        <span>📰 东方财富网</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>🏷️ TSLA</span>
+                    </div>
+                </div>
+
+                <!-- 链接 -->
+                <div class="mt-3">
+                    <a href="https://finance.eastmoney.com/a/202604203710396448.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                        <span>阅读原文</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-300 hover:shadow-lg border border-gray-100">
+                <!-- 头部 -->
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">🎮</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                            腾讯
+                        </span>
+                    </div>
+                    <span class="inline-block px-2 py-1 rounded-full text-xs font-medium border bg-amber-100 border-amber-500 text-amber-900">
+                        ⭐ 推荐 7.5分
+                    </span>
+                </div>
+
+                <!-- 标题 -->
+                <h3 class="text-lg font-bold text-gray-900 mb-3 leading-tight">总奖金池达401.1万元、赛道全升级！2026 腾讯全球游戏创作大赛在武汉开幕</h3>
+
+                <!-- 深度摘要 -->
+                <div class="bg-gradient-to-r from-purple-50 to-purple-100 border-l-4 border-blue-500 p-4 rounded-r-lg mb-4">
+                    <div class="font-semibold text-blue-800 mb-2 flex items-center">
+                        <span class="mr-2">📖</span>
+                        <span>深度解读</span>
+                    </div>
+                    <p class="text-blue-900 text-sm leading-relaxed">总奖金池达401.1万元、赛道全升级！2026 腾讯全球游戏创作大赛在武汉开幕。具体内容请查看原文链接。</p>
+                </div>
+
+                <!-- 逻辑框架 -->
+                <div class="mt-2 flex items-center text-sm text-gray-600">
+                    <span class="font-medium mr-2">🔗 逻辑框架:</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full">事件→进展→意义</span>
+                </div>
+
+                <!-- 关键数据 -->
+                
+
+                <!-- 重要信息 -->
+                
+
+                <!-- 股价影响 -->
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <div class="text-sm font-semibold text-gray-700 mb-2">💰 股价影响评估</div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded font-medium">
+                            低影响
+                        </span>
+                        <span class="text-sm text-gray-600">对股价有中等长期影响，建议关注</span>
+                    </div>
+                </div>
+
+                <!-- 页脚 -->
+                <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
+                    <div class="flex items-center gap-2">
+                        <span>📅 2026-04-18</span>
+                        <span>📰 腾讯网</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>🏷️ 0700.HK</span>
+                    </div>
+                </div>
+
+                <!-- 链接 -->
+                <div class="mt-3">
+                    <a href="http://news.qq.com/rain/a/20260418A06SRJ00" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                        <span>阅读原文</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-300 hover:shadow-lg border border-gray-100">
+                <!-- 头部 -->
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">🍶</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                            茅台
+                        </span>
+                    </div>
+                    <span class="inline-block px-2 py-1 rounded-full text-xs font-medium border bg-amber-100 border-amber-500 text-amber-900">
+                        ⭐ 推荐 7.5分
+                    </span>
+                </div>
+
+                <!-- 标题 -->
+                <h3 class="text-lg font-bold text-gray-900 mb-3 leading-tight">A股“股王”宝座易主后复归：贵州茅台反超源杰科技重夺股价第一</h3>
+
+                <!-- 深度摘要 -->
+                <div class="bg-gradient-to-r from-amber-50 to-amber-100 border-l-4 border-blue-500 p-4 rounded-r-lg mb-4">
+                    <div class="font-semibold text-blue-800 mb-2 flex items-center">
+                        <span class="mr-2">📖</span>
+                        <span>深度解读</span>
+                    </div>
+                    <p class="text-blue-900 text-sm leading-relaxed">股“股王”宝座易主后复归：贵州茅台反超源杰科技重夺股价第一财富号网财经焦点股票新股期指期权行情数据全球美股港股期货外汇银行基金理财债券直播股吧基金吧博客财富号搜索行情中心指数期指期权个股板块排行新股基金港股美股期货外汇黄金自选股自选基金数据中心资金流向主力排名板块资金个股研报新股申购转债申购北交所申购股比价年报大全融资融券龙虎榜限售解禁审核大宗交易估值分析首页社区正文股“股王”宝座易主后复归：贵州茅台反超源杰科技重夺股价第一格隆汇26年04月20日11返回财富号评论吧。</p>
+                </div>
+
+                <!-- 逻辑框架 -->
+                <div class="mt-2 flex items-center text-sm text-gray-600">
+                    <span class="font-medium mr-2">🔗 逻辑框架:</span>
+                    <span class="px-3 py-1 bg-gray-100 rounded-full">事件→进展→意义</span>
+                </div>
+
+                <!-- 关键数据 -->
+                
+
+                <!-- 重要信息 -->
+                
+
+                <!-- 股价影响 -->
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                    <div class="text-sm font-semibold text-gray-700 mb-2">💰 股价影响评估</div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded font-medium">
+                            低影响
+                        </span>
+                        <span class="text-sm text-gray-600">对股价有中等长期影响，建议关注</span>
+                    </div>
+                </div>
+
+                <!-- 页脚 -->
+                <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
+                    <div class="flex items-center gap-2">
+                        <span>📅 2026-04-20</span>
+                        <span>📰 财富号</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>🏷️ 600519.SS</span>
+                    </div>
+                </div>
+
+                <!-- 链接 -->
+                <div class="mt-3">
+                    <a href="https://caifuhao.eastmoney.com/news/20260420160101743729350" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                        <span>阅读原文</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <footer class="mt-12 pt-6 border-t text-sm text-gray-500">
-      <p>💡 自动更新：每天09:00 (北京时间)</p>
-      <p class="mt-1">⚠️ 免责声明：内容仅供参考，投资有风险</p>
+    <!-- 页脚 -->
+    <footer class="bg-white border-t border-gray-200 py-6 px-4 mt-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-sm text-gray-600">
+                    <p>📊 数据统计：总搜索 42条，精选 8条，实时新闻 15条</p>
+                    <p class="mt-1">⏰ 更新时间：2026/04/21 09:25:42</p>
+                </div>
+                <div class="text-sm text-gray-600">
+                    <p>🏢 覆盖公司：谷歌、英伟达、特斯拉、腾讯、茅台</p>
+                    <p class="mt-1">🔄 自动更新：每天北京时间9:00</p>
+                </div>
+            </div>
+            <div class="mt-4 text-center text-xs text-gray-500">
+                <p>© 2026 金珂重点关注公司新闻动态 · 每日自动更新 · 深度分析 · 股价影响评估</p>
+                <p class="mt-1">GitHub: <a href="https://github.com/lovinglaura/company-news" class="text-blue-600 hover:text-blue-800">lovinglaura/company-news</a></p>
+            </div>
+        </div>
     </footer>
-  </div>
 </body>
 </html>
