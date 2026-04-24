@@ -30,8 +30,8 @@ const CONFIG = {
     google: {
       queries: [
         { query: 'Google 谷歌 最新新闻 今天 实时', timeRange: '1d', priority: 1 },
-        { query: 'Google Alphabet 财报 盈利 AI产品发布', timeRange: '3d', priority: 2 },
-        { query: 'Google GOOGL 股价 分析 投资', timeRange: '3d', priority: 3 }
+        { query: 'Google Alphabet 财报 盈利 AI产品发布', timeRange: '1w', priority: 2 },
+        { query: 'Google GOOGL 股价 分析 投资', timeRange: '1w', priority: 3 }
       ],
       ticker: 'GOOGL',
       color: 'bg-blue-100 text-blue-800',
@@ -40,8 +40,8 @@ const CONFIG = {
     nvidia: {
       queries: [
         { query: 'NVIDIA 英伟达 最新新闻 今天', timeRange: '1d', priority: 1 },
-        { query: 'NVIDIA 财报 GPU AI芯片 产品发布', timeRange: '3d', priority: 2 },
-        { query: 'NVDA 股价 分析 投资', timeRange: '3d', priority: 3 }
+        { query: 'NVIDIA 财报 GPU AI芯片 产品发布', timeRange: '1w', priority: 2 },
+        { query: 'NVDA 股价 分析 投资', timeRange: '1w', priority: 3 }
       ],
       ticker: 'NVDA',
       color: 'bg-green-100 text-green-800',
@@ -50,8 +50,8 @@ const CONFIG = {
     tesla: {
       queries: [
         { query: 'Tesla 特斯拉 最新新闻 今天', timeRange: '1d', priority: 1 },
-        { query: 'Tesla 财报 电动车 自动驾驶 马斯克', timeRange: '3d', priority: 2 },
-        { query: 'TSLA 股价 分析 投资', timeRange: '3d',priority: 3 }
+        { query: 'Tesla 财报 电动车 自动驾驶 马斯克', timeRange: '1w', priority: 2 },
+        { query: 'TSLA 股价 分析 投资', timeRange: '1w',priority: 3 }
       ],
       ticker: 'TSLA',
       color: 'bg-red-100 text-red-800',
@@ -60,8 +60,8 @@ const CONFIG = {
     tencent: {
       queries: [
         { query: '腾讯 最新新闻 今天', timeRange: '1d', priority: 1 },
-        { query: '腾讯 财报 游戏 社交 投资', timeRange: '3d', priority: 2 },
-        { query: '0700.HK 股价 分析 投资', timeRange: '3d', priority: 3 }
+        { query: '腾讯 财报 游戏 社交 投资', timeRange: '1w', priority: 2 },
+        { query: '0700.HK 股价 分析 投资', timeRange: '1w', priority: 3 }
       ],
       ticker: '0700.HK',
       color: 'bg-purple-100 text-purple-800',
@@ -70,8 +70,8 @@ const CONFIG = {
     maotai: {
       queries: [
         { query: '茅台 最新新闻 今天', timeRange: '1d', priority: 1 },
-        { query: '茅台 财报 白酒 消费', timeRange: '3d', priority: 2 },
-        { query: '600519.SS 股价 分析 投资', timeRange: '3d', priority: 3 }
+        { query: '茅台 财报 白酒 消费', timeRange: '1w', priority: 2 },
+        { query: '600519.SS 股价 分析 投资', timeRange: '1w', priority: 3 }
       ],
       ticker: '600519.SS',
       color: 'bg-amber-100 text-amber-800',
@@ -98,11 +98,17 @@ async function fetchArticleContent(url) {
   return new Promise((resolve) => {
     // 支持http和https
     const httpModule = url.startsWith('https') ? require('https') : require('http');
-    httpModule.get(url, (res) => {
+    const req = httpModule.get(url, (res) => {
       let data = '';
       res.on('data', (chunk) => { data += chunk; });
       res.on('end', () => { resolve(data.substring(0, 10000)); }); // 只取前1万字符
     }).on('error', () => { resolve(''); });
+    
+    // 5秒超时，避免挂住
+    req.setTimeout(5000, () => {
+      req.destroy();
+      resolve('');
+    });
   });
 }
 
@@ -393,7 +399,7 @@ async function main() {
       }
       
       // 稍微等待，避免请求过快
-      await new Promise(resolve => setTimeout(resolve, 800));
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
     
     // 按价值评分排序，每家公司至少保留1条，最多3条，确保覆盖所有公司
